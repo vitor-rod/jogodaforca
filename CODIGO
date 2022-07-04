@@ -1,0 +1,59 @@
+from modulefinder import packagePathMap
+from re import template
+from sqlite3 import apilevel
+from textwrap import indent
+from traceback import print_tb
+
+print("******************************")
+print("***Bem vindo ao jogo FORCA!***")
+print("******************************")
+
+palavra_secreta = "crocodilo".upper()
+letras_acertadas = ["_" for letra in palavra_secreta]
+
+enforcou = False
+acertou = False
+num_tentativas = len(palavra_secreta)//2
+
+print(letras_acertadas)
+print(f"Você tem {num_tentativas} tentativas! Boa sorte!")
+
+while(not enforcou and not acertou):
+
+    palpite = input("Dê o seu melhor palpite: ")
+    palpite = palpite.strip().upper()
+
+    if (palpite in palavra_secreta):
+        index = 0
+        for letra in palavra_secreta:
+            if (palpite == letra):
+                letras_acertadas[index] = palpite
+            index += 1
+
+        num_tentativas = num_tentativas - 1
+        if (num_tentativas >= 2):
+            print(f"Muito bem! Você tem mais {num_tentativas} tentativas!")
+        if (num_tentativas == 1):
+            print(f"Muita atenção, pois você só tem mais {num_tentativas} tentativa!")
+        if (num_tentativas == 0):
+            print("Você perdeu!")
+            break
+
+        print(letras_acertadas)
+
+    if (palpite not in palavra_secreta):
+        num_tentativas = num_tentativas - 1
+        if (num_tentativas >= 2):
+            print(f"Essa letra não faz parte da palavra secreta! Você tem mais {num_tentativas} tentativas!")
+        if (num_tentativas == 1):
+            print(f"Muita atenção, pois você só tem mais {num_tentativas} tentativa!")
+        if (num_tentativas == 0):
+            print("Você perdeu!")
+            break
+
+    if (palpite == palavra_secreta):
+        print("Você ganhou!")
+        break
+
+print(f"A palavra secreta era {palavra_secreta}.")
+print("Fim de jogo!")
