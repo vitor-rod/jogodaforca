@@ -14,3 +14,5 @@ Com base no nome do país, o código indica o continente em que o país está lo
 
 Quarto passo:
 O player tenta acertar o nome do país.
+Caso o player esgote as tentativas, o jogo acaba.
+Caso o player acerte a palavra, o jogo acaba.
